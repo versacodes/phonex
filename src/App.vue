@@ -7,6 +7,11 @@ import ProductCard from './components/ProductCard.vue'
 </script>
 
 <template>
+
+  <StoreHeader />
+  <ProductList />
+  <ProductCard />
+
 </template>
 
 <style scoped>
