@@ -9,10 +9,18 @@ import ProductCard from './components/ProductCard.vue'
 <template>
 
   <StoreHeader />
-  <ProductList />
-  <ProductCard />
+  <main class="main">
+    <ProductList />
+    <ProductCard />
+  </main>
 
 </template>
 
 <style scoped>
+.main {
+  display: flex;
+}
+.main > * {
+  flex: 1 1 100%;
+}
 </style>
