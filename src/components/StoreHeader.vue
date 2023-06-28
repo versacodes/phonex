@@ -5,7 +5,9 @@
 <template>
   <header class="header">
     <h1 class="logo">PhoneX</h1>
-    <a href="#" class="cart">CART</a>
+    <a href="#" class="cart">
+      <img src="../assets/cart_icon.png" class="cart-icon">
+    </a>
   </header>
 </template>
 
@@ -23,7 +25,10 @@
   }
   .cart {
     display: inline-block;
-    font-size: 0.8em;  
-    font-weight: bold;
+    /* font-size: 0.8em;   */
+    /* font-weight: bold; */
+  }
+  .cart-icon {
+    width: 40%;
   }
 </style>

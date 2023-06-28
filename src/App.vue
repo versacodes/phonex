@@ -47,4 +47,19 @@ const products = ref([
     }
   }
 
+  @media only screen and (min-width: 768px) {
+    .main {
+      padding: 0.5em 10em;
+    }
+    .header {
+      font-size: 1.4rem;
+    }
+    .product-card {
+      font-size: 1.6rem;
+    }
+    .product-list-container {
+      font-size: 2.4rem;
+    }
+  }
+
 </style>
