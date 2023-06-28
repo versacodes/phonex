@@ -17,41 +17,43 @@ const alt = ref("Hello")
     <!-- loop over products then render .product-preview based on key values -->
     <div class="product-preview" v-for="product in products" key="product.id">
       <img class="product-list-image" :src="product.image" :alt="product.name" />
-      <h2 class="product-name">{{product.name}}</h2>
+      <section>
+        <h2 class="product-name">{{product.name}}</h2>
+      </section>  
     </div>
   </div>
 </template>
 
 <style scoped>
   .product-list-container {
-    /* background: #eee; */
-    padding: 0.5em 0.5em;
     display: flex;
     justify-content: center;
-    /* flex-wrap: wrap; */
-  }
-  .product-preview ~ .product-preview {
-    /* margin-top: 6px; */
-  }
-  .product-preview {
-    background: #444;
+    flex-wrap: wrap;
+    background: #888;
+    padding: 0.8em;
   }
   
-  .product-list-image {
-    width: 80px;
-    height: 80px;
+  .product-preview {
+    background: #444;
+    /* 2 products per row */
+    /* 45% to accomodate for extra whitespace */
+    width: 45%;
+  }
+
+  .product-preview:first-child, .product-preview:nth-child(2) {
+    margin-bottom: 10px;
+  }  
+
+  .product-preview:nth-child(2), .product-preview:last-child {
+    margin-left: 10px;
   }
   
   .product-name {
-    font-size: 0.7em;
+    font-size: 0.5em;
     text-align: center;
     padding: 1em;
     color: white;
-    margin-top: auto;
-    /* margin-bottom: auto; */
-  }
-  .product-desc {
-    font-size: 0.7em;
-    color: white;
+    /* break long word into multiple lines */
+    overflow-wrap: break-word;
   }
 </style>

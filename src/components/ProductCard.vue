@@ -17,41 +17,45 @@
 
 <style scoped>
   .product-card {
-    width: 100%;
-    font-size: 1rem;
-    /* height: 100vh; */
-    /* display: flex; */
-    background: #ddd;
+    font-size: 0.9rem;
+    background: #efefef;
     margin-bottom: 10px;
   }
   .prod {
-    width: 100%;
   }
   .product-details {
     padding: 1em;
     display: flex;
     flex-direction: column;
   }
+  
   .product-image {
   }
+  
   .product-name {
-    font-size: 1.5em;
+    font-size: 1.4em;
     margin-bottom: 5px;
   }
   .product-price {
     margin-bottom: 15px;
-    font-size: 0.8em;
+    font-size: 0.9em;
+    color: #333333;
   }
   .product-desc {
     font-size: 0.8em;
     margin-bottom: 1em;
+    /* improve readability by adding spacing in desc */
     line-height: 1.4;
     letter-spacing: 0.2px;
+    color: #343434;
   }
   .atc {
     background: #222;
     color: white;
-    padding: 1em;
+    font-weight: bold;
+    padding: 0.8em;
     width: 100%;
+    font-size: 1em;
   }
+  
 </style>

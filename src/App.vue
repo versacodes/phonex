@@ -17,11 +17,16 @@ import ProductCard from './components/ProductCard.vue'
 </template>
 
 <style scoped>
-.main {
-  /* display: flex; */
-  padding: 0.5em 5.5em;
-}
-.main > .product-list-container {
-  /* flex: 60%; */
-}
+  .main {
+    padding: 0.5em 4em;
+  }
+  @media only screen and (min-width: 600px) {
+    .main {
+      padding: 0.5em 10em;
+    }
+    .product-card {
+      font-size: 1.5rem;
+    }
+  }
+
 </style>

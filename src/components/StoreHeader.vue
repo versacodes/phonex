@@ -10,19 +10,18 @@
 
 <style scoped>
   .header {
-    background: #f99;
+    background: #333;
     display: flex;
-    padding: 0.8em 2em;
+    padding: 1em 2em;
     justify-content: space-between;
     align-items: center;
+    color: white;
   }
   .logo {
-    font-size: 1.7em;
+    font-size: 1.5em;
   }
   .cart {
-    display: block;
-    /* background: #888; */
-    /* padding: 1em; */
+    display: inline-block;
     font-size: 0.8em;  
     font-weight: bold;
   }
