@@ -1,4 +1,9 @@
 <script setup>
+
+const props = defineProps({
+  product_list: Array
+})
+
 </script>
 
 <template>
@@ -10,6 +15,7 @@
         <h4 class="product-price">$9.99</h4>
         <p class="product-desc">Nullam tempus scelerisque purus, sed mattis elit condimentum nec. Proin ipsum purus, laoreet quis dictum a, laoreet sed ligula.</p>
       </div>
+      <!-- transfer button inside .prod instead of .product_details -->
       <button class="atc">Add To Cart</button>
     </div>
   </div>
@@ -19,7 +25,8 @@
   .product-card {
     font-size: 0.9rem;
     background: #efefef;
-    margin-bottom: 10px;
+    /* add whitespace between ProductCard and ProductList */
+    margin-bottom: 15px;
   }
   .prod {
   }
