@@ -12,18 +12,18 @@
   .header {
     background: #f99;
     display: flex;
-    padding: 0.8em 4em;
+    padding: 0.8em 2em;
     justify-content: space-between;
     align-items: center;
   }
   .logo {
-    font-size: 1.6em;
+    font-size: 1.7em;
   }
   .cart {
     display: block;
     /* background: #888; */
-    padding: 1em;
-    font-size: 0.8em;
+    /* padding: 1em; */
+    font-size: 0.8em;  
     font-weight: bold;
   }
 </style>

@@ -10,17 +10,18 @@ import ProductCard from './components/ProductCard.vue'
 
   <StoreHeader />
   <main class="main">
-    <ProductList />
     <ProductCard />
+    <ProductList />
   </main>
 
 </template>
 
 <style scoped>
 .main {
-  display: flex;
+  /* display: flex; */
+  padding: 0.5em 5.5em;
 }
-.main > * {
-  flex: 1 1 100%;
+.main > .product-list-container {
+  /* flex: 60%; */
 }
 </style>

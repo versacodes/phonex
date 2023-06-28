@@ -14,8 +14,9 @@ const alt = ref("Hello")
 
 <template>
   <div class="product-list-container">
+    <!-- loop over products then render .product-preview based on key values -->
     <div class="product-preview" v-for="product in products" key="product.id">
-      <img class="product-list-image" :src="product.image" :alt="alt" />
+      <img class="product-list-image" :src="product.image" :alt="product.name" />
       <h2 class="product-name">{{product.name}}</h2>
     </div>
   </div>
@@ -23,27 +24,34 @@ const alt = ref("Hello")
 
 <style scoped>
   .product-list-container {
-    background: #eee;
-    padding: 1em 1em;
+    /* background: #eee; */
+    padding: 0.5em 0.5em;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px 50px;
+    /* flex-wrap: wrap; */
+  }
+  .product-preview ~ .product-preview {
+    /* margin-top: 6px; */
   }
   .product-preview {
     background: #444;
-    width: 30%;
-    /* flex: 40%; */
   }
+  
   .product-list-image {
-    /* width: 50%; */
+    width: 80px;
+    height: 80px;
   }
+  
   .product-name {
-    font-size: 0.8em;
+    font-size: 0.7em;
     text-align: center;
     padding: 1em;
     color: white;
     margin-top: auto;
     /* margin-bottom: auto; */
+  }
+  .product-desc {
+    font-size: 0.7em;
+    color: white;
   }
 </style>
