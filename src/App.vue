@@ -15,50 +15,120 @@ const products = ref([
 </script>
 
 <template>
+  <div class="app">
+    <StoreHeader />
+    <main class="main">
+      <ProductCard :product_list="products"/>
+      <ProductList :product_list="products"/>
+    </main>
 
-  <StoreHeader />
-  <main class="main">
-    <ProductCard :product_list="products"/>
-    <ProductList :product_list="products"/>
-  </main>
+    <main class="main-big">
+      <ProductCard :product_list="products"/>
+      <ProductList :product_list="products"/>
+    </main>
+  </div>
 
 </template>
 
 <style scoped>
-  .main {
-    padding: 0.5em 4em;
+  .app {
+    /* background: #569; */
+    /* height: 100vh; */
   }
-  
+  .main {
+    padding: 0.6em 4em;
+    height: 100%;
+    background: #859;
+  }
+  .main-big {
+    display: none;
+  }
+
   @media only screen and (min-width: 600px) {
 
     /* using inheritance */
     /* change only font-size of parent and properties with em units are auto adjusted */
     .main {
-      padding: 0.5em 8em;
+      padding: 1em 8em;
     }
     .header {
       font-size: 1.3rem;
     }
-    .product-card {
-      font-size: 1.4rem;
+    .main:deep(.prods) {
+      font-size: 1.3rem;
     }
-    .product-list-container {
+    .main:deep(.product-list-container) {
       font-size: 1.8rem;
     }
   }
 
   @media only screen and (min-width: 768px) {
-    .main {
-      padding: 0.5em 10em;
-    }
+    
+    /* todos: */
+    /*   - responsive design */
+    /*   - refactor data using computed */
+    /*   - use v-binding for certain classes */
+    
+    /* >>> and /deep/ are deprecated, */
+    /* change to :deep() */
     .header {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
-    .product-card {
+    .main:deep(.product-list-container) {
+			font-size: 2.5rem;
+    }
+    .main:deep(.product-preview) {
+      width: 45%;
+    }
+    .main:deep(.prods) {
+      /* width: 45%; */
+      font-size: 1.5rem;
+      /* margin-bottom: 0; */
+    }
+  }
+
+  @media only screen and (min-width: 992px) {
+    .header {
       font-size: 1.6rem;
     }
-    .product-list-container {
-      font-size: 2.4rem;
+    .main {
+      display: none;
+    }
+    .main-big {
+      display: flex;
+      align-items: center;
+      height: 100vmin;
+      justify-content: space-evenly;
+    }
+    .main-big:deep(.product-list-container) {
+			width: 25%;
+    }
+    .main-big:deep(.product-preview) {
+      width: 45%;
+    }
+    /* .main-big >>> .product-details { */
+    /*   background: #745; */
+    /* } */
+    .main-big:deep(.prods) {
+      width: 60%;
+      display: flex;
+      /* height: 100vmin; */
+      font-size: 1em;
+      margin-bottom: 0;
+    }
+    .main-big:deep(.atc) {
+      display: none;
+    }
+    .main-big:deep(.atc-big) {
+      /* display: none; */
+      background: #222;
+      color: white;
+      font-weight: bold;
+      padding: 0.8em;
+      width: 100%;
+      display: inline-block;
+      font-size: 1em;
+      margin-top: auto;
     }
   }
 

@@ -6,6 +6,11 @@
 	font-family: sans-serif;
 }
 
+body {
+  /* height: 100vh; */
+  /* background: #643; */
+}
+
 img {
 	width: 100%;
 	display: block;

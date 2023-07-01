@@ -5,12 +5,14 @@ const props = defineProps({
   product_list: Array
 })
 
+
+
 </script>
 
 <template>
   <div class="product-list-container">
     <!-- loop over products then render .product-preview based on key values -->
-    <div class="product-preview" v-for="product in product_list" key="product.id">
+    <div class="product-preview" v-for="product in product_list" :key="product.id>
       <img class="product-list-image" :src="product.image" :alt="product.name" />
       <section>
         <h2 class="product-name">{{product.name}}</h2>
@@ -24,6 +26,7 @@ const props = defineProps({
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    /* background: #f12; */
   }
   
   .product-preview {
@@ -50,6 +53,7 @@ const props = defineProps({
     text-align: center;
     padding: 1em;
     color: white;
+    line-height: 1.4;
     /* break long word into multiple lines */
     overflow-wrap: break-word;
   }

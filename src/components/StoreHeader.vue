@@ -25,10 +25,8 @@
   }
   .cart {
     display: inline-block;
-    /* font-size: 0.8em;   */
-    /* font-weight: bold; */
   }
   .cart-icon {
-    width: 40%;
+    width: 1.5em;
   }
 </style>
