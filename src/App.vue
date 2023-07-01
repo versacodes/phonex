@@ -5,12 +5,16 @@ import ProductCard from './components/ProductCard.vue'
 import { ref } from 'vue'
 
 const products = ref([
-  {id: 0, image: "/src/assets/phone-photos-squared/case_1_pattern.jpg", name: "Black Pattern Case", desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."},
-  {id: 1, image:"/src/assets/phone-photos-squared/case_cream.jpg", name: "Cream Case", desc: "Quisque vitae varius ex, eu volutpat orci."},
-  {id: 2, image:"/src/assets/phone-photos-squared/headphones_1.jpg", name: "Headphones", desc: "Duis ac nulla varius diam ultrices rutrum."},
-  {id: 3, image:"/src/assets/phone-photos-squared/octo_tripod_1.jpg", name: "Octo Tripod", desc: "Cras erat dui, finibus vel lectus ac, pharetra dictum odio."}
+  {id: 0, image: "/src/assets/phone-photos-squared/case_1_pattern.jpg", name: "Black Pattern Case", desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.", price: 2.99},
+  {id: 1, image:"/src/assets/phone-photos-squared/case_cream.jpg", name: "Cream Case", desc: "Quisque vitae varius ex, eu volutpat orci.", price: 2.99},
+  {id: 2, image:"/src/assets/phone-photos-squared/headphones_1.jpg", name: "Headphones", desc: "Duis ac nulla varius diam ultrices rutrum.", price: 29.99},
+  {id: 3, image:"/src/assets/phone-photos-squared/octo_tripod_1.jpg", name: "Octo Tripod", desc: "Cras erat dui, finibus vel lectus ac, pharetra dictum odio.", price: 19.99}
 ])
 
+const product_id = ref(0)
+function getId(id) {
+  product_id.value = id
+}
 
 </script>
 
@@ -18,14 +22,14 @@ const products = ref([
   <div class="app">
     <StoreHeader />
     <main class="main">
-      <ProductCard :product_list="products"/>
-      <ProductList :product_list="products"/>
+      <ProductCard :product_list="products" :prod_id="product_id"/>
+      <ProductList :product_list="products" :get_id="getId"/>
     </main>
 
-    <main class="main-big">
-      <ProductCard :product_list="products"/>
-      <ProductList :product_list="products"/>
-    </main>
+    <!-- <main class="main-big"> -->
+    <!--   <ProductCard :product_list="products" :prod_id="product_id"/> -->
+    <!--   <ProductList :product_list="products" :get_id="getId"/> -->
+    <!-- </main> -->
   </div>
 
 </template>

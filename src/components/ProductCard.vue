@@ -1,19 +1,27 @@
 <script setup>
+import { computed } from 'vue'
 
 const props = defineProps({
-  product_list: Array
+  product_list: Array,
+  prod_id: Number
 })
+
+//should be computed, relies on reactive/ref data
+const product = computed(() => {
+  return props.product_list[props.prod_id]
+})
+// console.log(props.prod_id)
 
 </script>
 
 <template>
   <!-- <div class="product-card"> -->
   <div class="prods">
-    <img src="/src/assets/phone-photos-squared/headphones_1.jpg" alt="insert image here" class="product-image" />
+    <img :src="product.image" :alt="product.name" class="product-image" />
     <div class="product-details">
-      <h1 class="product-name">Product Name</h1>
-      <h4 class="product-price">$9.99</h4>
-      <p class="product-desc">Nullam tempus scelerisque purus, sed mattis elit condimentum nec. Proin ipsum purus, laoreet quis dictum a, laoreet sed ligula.</p>
+      <h1 class="product-name">{{product.name}}</h1>
+      <h4 class="product-price">{{"$" + product.price}}</h4>
+      <p class="product-desc">{{product.desc}}</p>
       <button class="atc-big">Add To Cart</button>
     </div>
     <!-- transfer button inside .prod instead of .product_details -->
