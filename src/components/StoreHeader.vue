@@ -6,6 +6,7 @@
   <header class="header">
     <h1 class="logo">PhoneX</h1>
     <a href="#" class="cart">
+      <div class="circle">1</div>
       <img src="../assets/cart_icon.png" class="cart-icon">
     </a>
   </header>
@@ -25,8 +26,22 @@
   }
   .cart {
     display: inline-block;
+    position: relative;
   }
   .cart-icon {
     width: 1.5em;
+  }
+  /* circle notif for cart items */
+  .circle {
+    background: #54c;
+    width: 1.5em;
+    height: 1.5em;
+    font-size: 0.8em;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    right: -1em;
+    top: -0.5em;
   }
 </style>

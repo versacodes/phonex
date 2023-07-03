@@ -34,7 +34,6 @@ const product = computed(() => {
   .product-details {
     display: flex;
     flex-direction: column;
-    /* font-size: 1.2rem; */
   }
   /* all children except for .atc-big */
   .product-details > :not(.atc-big) {
