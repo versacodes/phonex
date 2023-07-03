@@ -27,7 +27,6 @@ const props = defineProps({
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    /* background: #f12; */
   }
   
   .product-preview {

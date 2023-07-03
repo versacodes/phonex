@@ -10,7 +10,6 @@ const props = defineProps({
 const product = computed(() => {
   return props.product_list[props.prod_id]
 })
-// console.log(props.prod_id)
 
 </script>
 
@@ -31,14 +30,7 @@ const product = computed(() => {
 </template>
 
 <style scoped>
-  /* .product-card { */
-  /*   font-size: 0.9rem; */
-  /*   /* background: #efefef; */ 
-  /*   /* add whitespace between ProductCard and ProductList */ 
-  /*   /* margin-bottom: 15px; */ 
-  /* } */
   .prods {
-    /* display: flex; */
     background: #efefef;
     margin-bottom: 15px;
   }
@@ -47,10 +39,6 @@ const product = computed(() => {
     display: flex;
     flex-direction: column;
   }
-  
-  .product-image {
-  }
-  
   .product-name {
     font-size: 1.4em;
     margin-bottom: 0.2em;

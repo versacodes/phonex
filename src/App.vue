@@ -2,7 +2,8 @@
 import StoreHeader from './components/StoreHeader.vue'
 import ProductList from './components/ProductList.vue'
 import ProductCard from './components/ProductCard.vue'
-import { ref } from 'vue'
+import AppDesktopSize from './components/AppDesktopSize.vue'
+import { ref, onMounted } from 'vue'
 
 const products = ref([
   {id: 0, image: "/src/assets/phone-photos-squared/case_1_pattern.jpg", name: "Black Pattern Case", desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.", price: 2.99},
@@ -25,29 +26,19 @@ function getId(id) {
       <ProductCard :product_list="products" :prod_id="product_id"/>
       <ProductList :product_list="products" :get_id="getId"/>
     </main>
-
-    <!-- <main class="main-big"> -->
-    <!--   <ProductCard :product_list="products" :prod_id="product_id"/> -->
-    <!--   <ProductList :product_list="products" :get_id="getId"/> -->
-    <!-- </main> -->
   </div>
 
 </template>
 
 <style scoped>
+  /* padding for whitespace */
   .app {
-    /* background: #569; */
-    /* height: 100vh; */
+    height: 100vh;
   }
   .main {
     padding: 0.6em 4em;
     height: 100%;
-    background: #859;
   }
-  .main-big {
-    display: none;
-  }
-
   @media only screen and (min-width: 600px) {
 
     /* using inheritance */
@@ -56,75 +47,69 @@ function getId(id) {
       padding: 1em 8em;
     }
     .header {
-      font-size: 1.3rem;
+      font-size: 0.9rem;
     }
     .main:deep(.prods) {
-      font-size: 1.3rem;
+      font-size: 1rem;
     }
     .main:deep(.product-list-container) {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
   }
 
-  @media only screen and (min-width: 768px) {
-    
-    /* todos: */
-    /*   - responsive design */
-    /*   - refactor data using computed */
-    /*   - use v-binding for certain classes */
-    
+  @media only screen and (min-width: 768px) {    
     /* >>> and /deep/ are deprecated, */
     /* change to :deep() */
     .header {
-      font-size: 1.2rem;
+      font-size: 0.9rem;
+    }
+    .main {
+      padding: 1.5em 14em;
     }
     .main:deep(.product-list-container) {
-			font-size: 2.5rem;
-    }
-    .main:deep(.product-preview) {
-      width: 45%;
+			font-size: 1.6rem;
     }
     .main:deep(.prods) {
-      /* width: 45%; */
-      font-size: 1.5rem;
-      /* margin-bottom: 0; */
+      font-size: 1rem;
     }
   }
 
   @media only screen and (min-width: 992px) {
     .header {
-      font-size: 1.6rem;
+      font-size: 1rem;
     }
     .main {
-      display: none;
-    }
-    .main-big {
       display: flex;
       align-items: center;
-      height: 100vmin;
       justify-content: space-evenly;
+      padding: 3em;
     }
-    .main-big:deep(.product-list-container) {
-			width: 25%;
+    /* take up 30% of .main */
+    .main:deep(.product-list-container) {
+			font-size: 1.8rem;
+			width: 30%;
     }
-    .main-big:deep(.product-preview) {
-      width: 45%;
-    }
-    /* .main-big >>> .product-details { */
-    /*   background: #745; */
-    /* } */
-    .main-big:deep(.prods) {
-      width: 60%;
+    /* take up 65% of .main */
+    .main:deep(.prods) {
+      width: 65%;
       display: flex;
-      /* height: 100vmin; */
-      font-size: 1em;
+      font-size: 1.1rem;
       margin-bottom: 0;
     }
-    .main-big:deep(.atc) {
+    /* same fixed for every image in .prods */
+    .main:deep(.product-image) {
+      width: 350px;
+      height: 350px;
+    }
+    .main:deep(.product-details) {
+      width: 100%;
+    }
+    /* change layout for button */
+    /* see ProductCard for .atc and .atc-big btn */
+    .main:deep(.atc) {
       display: none;
     }
-    .main-big:deep(.atc-big) {
-      /* display: none; */
+    .main:deep(.atc-big) {
       background: #222;
       color: white;
       font-weight: bold;
@@ -133,6 +118,19 @@ function getId(id) {
       display: inline-block;
       font-size: 1em;
       margin-top: auto;
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
+    .main {
+      padding: 3em 5em;
+    }
+    .main:deep(.prods) {
+      /* width: 100%; */
+      font-size: 1.3rem;
+    }
+    .main:deep(.product-list-container) {
+			font-size: 1.9rem;
     }
   }
 

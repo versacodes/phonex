@@ -21,7 +21,7 @@
     color: white;
   }
   .logo {
-    font-size: 1.5em;
+    font-size: 1.1em;
   }
   .cart {
     display: inline-block;
