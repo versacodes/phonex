@@ -1,12 +1,16 @@
 <script setup>
 
+const props = defineProps({
+  cart_items: Array
+})
+
 </script>
 
 <template>
   <header class="header">
     <h1 class="logo">PhoneX</h1>
     <a href="#" class="cart">
-      <div class="circle">1</div>
+      <div class="circle">{{ cart_items.length }}</div>
       <img src="../assets/cart_icon.png" class="cart-icon">
     </a>
   </header>

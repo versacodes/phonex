@@ -2,7 +2,7 @@
 import StoreHeader from './components/StoreHeader.vue'
 import ProductList from './components/ProductList.vue'
 import ProductCard from './components/ProductCard.vue'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, toRaw } from 'vue'
 
 const products = ref([
   {id: 0, image: "/src/assets/phone-photos-squared/case_1_pattern.jpg", name: "Black Pattern Case", desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.", price: 2.99},
@@ -10,6 +10,13 @@ const products = ref([
   {id: 2, image:"/src/assets/phone-photos-squared/headphones_1.jpg", name: "Headphones", desc: "Duis ac nulla varius diam ultrices rutrum.", price: 29.99},
   {id: 3, image:"/src/assets/phone-photos-squared/octo_tripod_1.jpg", name: "Octo Tripod", desc: "Cras erat dui, finibus vel lectus ac, pharetra dictum odio.", price: 19.99}
 ])
+
+const cart_items = ref([])
+function addToCart(product) {
+  cart_items.value.push(product)
+  // returns real value instead of Proxy
+  console.log(toRaw(cart_items.value))
+}
 
 const product_id = ref(0)
 function getId(id) {
@@ -20,9 +27,11 @@ function getId(id) {
 
 <template>
   <div class="app">
-    <StoreHeader />
+    <StoreHeader :cart_items="cart_items"/>
     <main class="main">
-      <ProductCard :product_list="products" :prod_id="product_id"/>
+      <ProductCard :product_list="products"
+                   :prod_id="product_id"
+                   :add_to_cart="addToCart"/>
       <ProductList :product_list="products" :get_id="getId"/>
     </main>
   </div>
