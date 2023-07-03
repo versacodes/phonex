@@ -2,7 +2,6 @@
 import StoreHeader from './components/StoreHeader.vue'
 import ProductList from './components/ProductList.vue'
 import ProductCard from './components/ProductCard.vue'
-import AppDesktopSize from './components/AppDesktopSize.vue'
 import { ref, onMounted } from 'vue'
 
 const products = ref([
@@ -27,7 +26,6 @@ function getId(id) {
       <ProductList :product_list="products" :get_id="getId"/>
     </main>
   </div>
-
 </template>
 
 <style scoped>
@@ -53,7 +51,7 @@ function getId(id) {
       font-size: 1rem;
     }
     .main:deep(.product-list-container) {
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
   }
 
@@ -67,7 +65,7 @@ function getId(id) {
       padding: 1.5em 14em;
     }
     .main:deep(.product-list-container) {
-			font-size: 1.6rem;
+			font-size: 1.2rem;
     }
     .main:deep(.prods) {
       font-size: 1rem;
@@ -86,7 +84,7 @@ function getId(id) {
     }
     /* take up 30% of .main */
     .main:deep(.product-list-container) {
-			font-size: 1.8rem;
+			font-size: 1rem;
 			width: 30%;
     }
     /* take up 65% of .main */
@@ -126,11 +124,10 @@ function getId(id) {
       padding: 3em 5em;
     }
     .main:deep(.prods) {
-      /* width: 100%; */
       font-size: 1.3rem;
     }
     .main:deep(.product-list-container) {
-			font-size: 1.9rem;
+			font-size: 1.3rem;
     }
   }
 
