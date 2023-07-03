@@ -42,6 +42,7 @@ const props = defineProps({
     height: 1.5em;
     font-size: 0.8em;
     border-radius: 50%;
+    text-align: center;
     display: grid;
     place-items: center;
     position: absolute;

@@ -2,6 +2,7 @@
 import StoreHeader from './components/StoreHeader.vue'
 import ProductList from './components/ProductList.vue'
 import ProductCard from './components/ProductCard.vue'
+import CartCheckout from './components/CartCheckout.vue'
 import { ref, onMounted, toRaw } from 'vue'
 
 const products = ref([
@@ -34,6 +35,7 @@ function getId(id) {
                    :add_to_cart="addToCart"/>
       <ProductList :product_list="products" :get_id="getId"/>
     </main>
+    <!-- <CartCheckout :cart_items="cart_items"/> -->
   </div>
 </template>
 
