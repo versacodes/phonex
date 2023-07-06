@@ -19,6 +19,12 @@ function addToCart(product) {
   console.log(toRaw(cart_items.value))
 }
 
+const cart_open = ref(false)
+function setCartOpen() {
+  cart_open.value = !cart_open.value
+  console.log(cart_open.value)
+}
+
 const product_id = ref(0)
 function getId(id) {
   product_id.value = id
@@ -28,25 +34,27 @@ function getId(id) {
 
 <template>
   <div class="app">
-    <StoreHeader :cart_items="cart_items"/>
-    <main class="main">
+    <StoreHeader :cart_items="cart_items"
+                 :set_cart_open="setCartOpen" />
+    <main class="main" v-if="cart_open">
       <ProductCard :product_list="products"
                    :prod_id="product_id"
                    :add_to_cart="addToCart"/>
       <ProductList :product_list="products" :get_id="getId"/>
     </main>
-    <!-- <CartCheckout :cart_items="cart_items"/> -->
+    <CartCheckout :cart_items="cart_items" v-else/>
   </div>
 </template>
 
 <style scoped>
   /* padding for whitespace */
   .app {
-    height: 100vh;
+    /* height: 100vh; */
+    padding: 2.5em 0;
   }
   .main {
     padding: 0.6em 4em;
-    height: 100%;
+    /* height: 100%; */
   }
   @media only screen and (min-width: 600px) {
 

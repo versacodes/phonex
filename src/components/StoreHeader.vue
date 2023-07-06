@@ -1,7 +1,8 @@
 <script setup>
 
 const props = defineProps({
-  cart_items: Array
+  cart_items: Array,
+  set_cart_open: Function
 })
 
 </script>
@@ -9,7 +10,7 @@ const props = defineProps({
 <template>
   <header class="header">
     <h1 class="logo">PhoneX</h1>
-    <a href="#" class="cart">
+    <a href="#" class="cart" @click="set_cart_open">
       <div class="circle">{{ cart_items.length }}</div>
       <img src="../assets/cart_icon.png" class="cart-icon">
     </a>
