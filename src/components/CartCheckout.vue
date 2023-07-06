@@ -19,15 +19,29 @@ function deleteItem(id) {
     <h2 class="cart-title">Cart Items</h2>
     <div class="item" v-for="(item, idx) in item_array" v-if="cart_items.length > 0" :key="item.id">
       <img class="item-image" :src="item.image" />
-      <h4 class="item-name">
+      <h6 class="item-name">
         {{ item.name }}
         <span class="item-quantity">{{ "x" + 1 }}</span>
-      </h4>
+      </h6>
       <p class="item-price">{{ "$" + item.price }}</p>
       <button class="delete" @click="deleteItem(idx)">X</button>
     </div>
   </div>
-  <button class="checkout-btn">CHECKOUT</button>
+  <section class="fixed">
+    <div class="total">
+      <div class="total-name">
+        <h6 class="total-product-price">Total Product Price</h6>
+        <h6 class="shipping">Shipping Fee</h6>
+        <h6 class="total-price">Total Price</h6>
+      </div>
+      <div class="total-price">
+        <h6 class="total-product-price">{{ "$2.99" }}</h6>
+        <h6 class="shipping">{{ "$2.99" }}</h6>
+        <h6 class="total-price">{{ "$2.99" }}</h6>
+      </div>
+    </div>
+    <button class="checkout-btn">CHECKOUT</button>
+  </section>
 </template>
 
 
@@ -38,7 +52,7 @@ function deleteItem(id) {
     place-items: center;
     background: #fdf;
     padding: 20px 0;
-    margin-bottom: 4em;
+    margin-bottom: 7em;
   }
   .cart-title {
     margin-bottom: 20px;
@@ -91,10 +105,25 @@ function deleteItem(id) {
     width: 100%;
     padding: 1em;
     color: #fff;
+    font-size: 0.8em;
+    font-weight: bold;
+  }
+  .fixed {
     position: fixed;
     bottom: 0;
-    font-size: 1.1em;
-    font-weight: bold;
+    width: 100%;
+  }
+  .total {
+    background: #eedfed;
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+  }
+  .total-name {
+    font-size: 0.9em;
+  }
+  .total-product-price ~ h6 {
+    margin-top: 0.5em;
   }
 </style>
 
