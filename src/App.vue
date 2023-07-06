@@ -47,14 +47,8 @@ function getId(id) {
 </template>
 
 <style scoped>
-  /* padding for whitespace */
-  .app {
-    /* height: 100vh; */
-    padding: 2.5em 0;
-  }
   .main {
-    padding: 0.6em 4em;
-    /* height: 100%; */
+    padding: 2em 4em;
   }
   @media only screen and (min-width: 600px) {
 

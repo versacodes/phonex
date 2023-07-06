@@ -27,18 +27,22 @@ function deleteItem(id) {
       <button class="delete" @click="deleteItem(idx)">X</button>
     </div>
   </div>
+  <button class="checkout-btn">CHECKOUT</button>
 </template>
 
 
 <style scoped>
   .cart-checkout {
+    /* center component */
     display: grid;
     place-items: center;
     background: #fdf;
     padding: 20px 0;
+    margin-bottom: 4em;
   }
   .cart-title {
     margin-bottom: 20px;
+    color: #242424;
   }
   .item {
     display: flex;
@@ -53,8 +57,8 @@ function deleteItem(id) {
   .item-name {
     margin-left: 10px;
     font-size: 0.7em;
-    /* background: #ff9; */
     flex: 1;
+    color: #222222;
     display: flex;
     flex-direction: column;
   }
@@ -62,6 +66,7 @@ function deleteItem(id) {
     font-size: 0.8em;
     margin-top: 5px;
     display: block;
+    color: #444;
   }
   .item-price {
     margin-left: auto;
@@ -71,7 +76,6 @@ function deleteItem(id) {
   }
   .delete {
     background: #c44;
-    /* display: inline-block; */
     width: 2em;
     height: 2em;
     font-size: 0.7em;
@@ -81,6 +85,16 @@ function deleteItem(id) {
   }
   .delete:hover {
     box-shadow: 1px 1px 7px 0 black;
+  }
+  .checkout-btn {
+    background: #e33;
+    width: 100%;
+    padding: 1em;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    font-size: 1.1em;
+    font-weight: bold;
   }
 </style>
 
