@@ -1,15 +1,22 @@
 <script setup>
-import { ref, toRaw } from 'vue'
+import { ref, toRaw, computed } from 'vue'
 
 const props = defineProps({
   cart_items: Array
 })
 
-const item_array = toRaw(props.cart_items)
+const item_array = props.cart_items
 
 function deleteItem(id) {
+  // remove only the given specific item 
   props.cart_items.splice(id, 1)
 }
+
+// returns a total number, then keep 2 decimal places only, then converts to Number
+// toFixed() returns a string
+const total_price = computed(() => {
+  return Number((item_array.reduce((total, item) => total + item.price, 0)).toFixed(2))
+})
 
 </script>
 
@@ -29,15 +36,15 @@ function deleteItem(id) {
   </div>
   <section class="fixed">
     <div class="total">
-      <div class="total-name">
+      <div class="total-names">
         <h6 class="total-product-price">Total Product Price</h6>
         <h6 class="shipping">Shipping Fee</h6>
         <h6 class="total-price">Total Price</h6>
       </div>
-      <div class="total-price">
-        <h6 class="total-product-price">{{ "$2.99" }}</h6>
-        <h6 class="shipping">{{ "$2.99" }}</h6>
-        <h6 class="total-price">{{ "$2.99" }}</h6>
+      <div class="total-prices">
+        <h6 class="total-product-price">{{ "$"+total_price }}</h6>
+        <h6 class="shipping">{{ "$"+2.99 }}</h6>
+        <h6 class="total-price">{{ "$"+(total_price + 2.99) }}</h6>
       </div>
     </div>
     <button class="checkout-btn">CHECKOUT</button>
@@ -100,14 +107,8 @@ function deleteItem(id) {
   .delete:hover {
     box-shadow: 1px 1px 7px 0 black;
   }
-  .checkout-btn {
-    background: #e33;
-    width: 100%;
-    padding: 1em;
-    color: #fff;
-    font-size: 0.8em;
-    font-weight: bold;
-  }
+  
+  /* contains .total and .checkout-btn */
   .fixed {
     position: fixed;
     bottom: 0;
@@ -119,11 +120,27 @@ function deleteItem(id) {
     display: flex;
     justify-content: space-between;
   }
-  .total-name {
+  .total-names, .total-prices {
     font-size: 0.9em;
   }
   .total-product-price ~ h6 {
     margin-top: 0.5em;
   }
+  .checkout-btn {
+    background: #e33;
+    width: 100%;
+    padding: 1em;
+    color: #fff;
+    font-size: 0.8em;
+    font-weight: bold;
+  }
 </style>
+
+
+
+
+
+
+
+
 
