@@ -2,10 +2,9 @@
 import { ref, toRaw, computed } from 'vue'
 
 const props = defineProps({
-  cart_items: Array
+  cart_items: Array,
+  item_quantity: Object
 })
-
-const item_array = props.cart_items
 
 function deleteItem(id) {
   // remove only the given specific item 
@@ -15,8 +14,21 @@ function deleteItem(id) {
 // returns a total number, then keep 2 decimal places only, then converts to Number
 // toFixed() returns a string
 const total_price = computed(() => {
-  return Number((item_array.reduce((total, item) => total + item.price, 0)).toFixed(2))
+  return Number((props.cart_items.reduce((total, item) => total + item.price, 0)).toFixed(2))
 })
+
+// user reduce to return an object with values of how many times were an item listed to the cart once or more times
+const quantityComputed = computed(() => {
+  return props.cart_items.reduce((acc, item) => {
+    if(item.name in acc) {
+      acc[item.name] += 1
+      return acc
+    }
+    acc[item.name] = 1
+    return acc //returns object
+  }, {})
+})
+
 
 </script>
 
@@ -24,11 +36,11 @@ const total_price = computed(() => {
 <template>
   <div class="cart-checkout">
     <h2 class="cart-title">Cart Items</h2>
-    <div class="item" v-for="(item, idx) in item_array" v-if="cart_items.length > 0" :key="item.id">
+    <div class="item" v-for="(item, idx) in cart_items" v-if="cart_items.length > 0" :key="item.id">
       <img class="item-image" :src="item.image" />
       <h6 class="item-name">
         {{ item.name }}
-        <span class="item-quantity">{{ "x" + 1 }}</span>
+        <span class="item-quantity">{{ "x" + quantityComputed[item.name] }}</span>
       </h6>
       <p class="item-price">{{ "$" + item.price }}</p>
       <button class="delete" @click="deleteItem(idx)">X</button>
@@ -44,7 +56,7 @@ const total_price = computed(() => {
       <div class="total-prices">
         <h6 class="total-product-price">{{ "$"+total_price }}</h6>
         <h6 class="shipping">{{ "$"+2.99 }}</h6>
-        <h6 class="total-price">{{ "$"+(total_price + 2.99) }}</h6>
+        <h6 class="total-price">{{ "$"+(total_price + 2.99).toFixed(2) }}</h6>
       </div>
     </div>
     <button class="checkout-btn">CHECKOUT</button>
@@ -125,6 +137,9 @@ const total_price = computed(() => {
   }
   .total-product-price ~ h6 {
     margin-top: 0.5em;
+  }
+  .total-price {
+    font-size: 0.9em;
   }
   .checkout-btn {
     background: #e33;

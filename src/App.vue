@@ -15,14 +15,11 @@ const products = ref([
 const cart_items = ref([])
 function addToCart(product) {
   cart_items.value.push(product)
-  // returns real value instead of Proxy
-  console.log(toRaw(cart_items.value))
 }
 
 const cart_open = ref(false)
 function setCartOpen() {
-  cart_open.value = !cart_open.value
-  console.log(cart_open.value)
+  cart_open.value = !cart_open.value // sets to true, not false
 }
 
 const product_id = ref(0)
@@ -36,7 +33,7 @@ function getId(id) {
   <div class="app">
     <StoreHeader :cart_items="cart_items"
                  :set_cart_open="setCartOpen" />
-    <main class="main" v-if="cart_open">
+    <main class="main" v-if="!cart_open">
       <ProductCard :product_list="products"
                    :prod_id="product_id"
                    :add_to_cart="addToCart"/>

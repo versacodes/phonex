@@ -11,7 +11,6 @@ const props = defineProps({
 const product = computed(() => {
   return props.product_list[props.prod_id]
 })
-
 </script>
 
 <template>
