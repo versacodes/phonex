@@ -1,15 +1,25 @@
 <script setup>
-import { ref, toRaw, computed } from 'vue'
+import { ref, computed } from 'vue'
 
 const props = defineProps({
-  cart_items: Array,
-  item_quantity: Object
+  cart_items: Array
 })
 
 function deleteItem(id) {
   // remove only the given specific item 
   props.cart_items.splice(id, 1)
 }
+
+const filtered_items = computed(() => {
+  return props.cart_items.reduce((acc, item) => {
+    // skip if el in item by name property
+    if(acc.some(el => el.name === item.name)) {
+      return acc // continue next iter
+    }
+    acc.push(item)
+    return acc
+  }, [])
+})
 
 // returns a total number, then keep 2 decimal places only, then converts to Number
 // toFixed() returns a string
@@ -36,7 +46,7 @@ const quantityComputed = computed(() => {
 <template>
   <div class="cart-checkout">
     <h2 class="cart-title">Cart Items</h2>
-    <div class="item" v-for="(item, idx) in cart_items" v-if="cart_items.length > 0" :key="item.id">
+    <div class="item" v-for="(item, idx) in filtered_items" v-if="cart_items.length > 0" :key="item.id">
       <img class="item-image" :src="item.image" />
       <h6 class="item-name">
         {{ item.name }}

@@ -3,7 +3,7 @@ import StoreHeader from './components/StoreHeader.vue'
 import ProductList from './components/ProductList.vue'
 import ProductCard from './components/ProductCard.vue'
 import CartCheckout from './components/CartCheckout.vue'
-import { ref, onMounted, toRaw } from 'vue'
+import { ref } from 'vue'
 
 const products = ref([
   {id: 0, image: "/src/assets/phone-photos-squared/case_1_pattern.jpg", name: "Black Pattern Case", desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.", price: 2.99},
@@ -12,11 +12,13 @@ const products = ref([
   {id: 3, image:"/src/assets/phone-photos-squared/octo_tripod_1.jpg", name: "Octo Tripod", desc: "Cras erat dui, finibus vel lectus ac, pharetra dictum odio.", price: 19.99}
 ])
 
+// store products added to cart
 const cart_items = ref([])
 function addToCart(product) {
   cart_items.value.push(product)
 }
 
+// check if user is on cart page
 const cart_open = ref(false)
 function setCartOpen() {
   cart_open.value = !cart_open.value // sets to true, not false
