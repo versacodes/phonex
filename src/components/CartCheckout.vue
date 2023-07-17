@@ -21,6 +21,11 @@ const filtered_items = computed(() => {
   }, [])
 })
 
+// show shipping fee only if there is item in cart
+const shipping_fee = computed(() => {
+  return props.cart_items.length > 0 ? 2.99 : 0
+})
+
 // returns a total number, then keep 2 decimal places only, then converts to Number
 // toFixed() returns a string
 const total_price = computed(() => {
@@ -65,8 +70,8 @@ const quantityComputed = computed(() => {
       </div>
       <div class="total-prices">
         <h6 class="total-product-price">{{ "$"+total_price }}</h6>
-        <h6 class="shipping">{{ "$"+2.99 }}</h6>
-        <h6 class="total-price">{{ "$"+(total_price + 2.99).toFixed(2) }}</h6>
+        <h6 class="shipping">{{ "$"+ shipping_fee }}</h6>
+        <h6 class="total-price">{{ "$"+(total_price + shipping_fee).toFixed(2) }}</h6>
       </div>
     </div>
     <button class="checkout-btn">CHECKOUT</button>
@@ -95,7 +100,7 @@ const quantityComputed = computed(() => {
     padding: 0.5em;
   }
   .item-image {
-    flex-basis: 25%;
+    width: 15%;
   }
   .item-name {
     margin-left: 10px;
