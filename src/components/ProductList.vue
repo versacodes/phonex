@@ -34,6 +34,7 @@ const props = defineProps({
     /* 2 products per row */
     /* 45% to accomodate for extra whitespace(see .product-preview below) */
     width: 45%;
+    cursor: pointer;
   }
   
   .product-preview:first-child, .product-preview:nth-child(2) {

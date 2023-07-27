@@ -77,6 +77,7 @@ const product = computed(() => {
     display: inline-block;
     font-size: 1em;
     margin-top: auto;
+    cursor: pointer;
   }
   
 </style>
