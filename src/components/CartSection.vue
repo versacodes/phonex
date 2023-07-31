@@ -2,16 +2,16 @@
 import { ref, computed } from 'vue'
 
 const props = defineProps({
-  cart_items: Array
+  cartItems: Array
 })
 
 function deleteItem(id) {
   // remove only the given specific item 
-  props.cart_items.splice(id, 1)
+  props.cartItems.splice(id, 1)
 }
 
 const filtered_items = computed(() => {
-  return props.cart_items.reduce((acc, item) => {
+  return props.cartItems.reduce((acc, item) => {
     // skip if el in item by name property
     if(acc.some(el => el.name === item.name)) {
       return acc // continue next iter
@@ -23,18 +23,18 @@ const filtered_items = computed(() => {
 
 // show shipping fee only if there is item in cart
 const shipping_fee = computed(() => {
-  return props.cart_items.length > 0 ? 2.99 : 0
+  return props.cartItems.length > 0 ? 2.99 : 0
 })
 
 // returns a total number, then keep 2 decimal places only, then converts to Number
 // toFixed() returns a string
 const total_price = computed(() => {
-  return Number((props.cart_items.reduce((total, item) => total + item.price, 0)).toFixed(2))
+  return Number((props.cartItems.reduce((total, item) => total + item.price, 0)).toFixed(2))
 })
 
 // user reduce to return an object with values of how many times were an item listed to the cart once or more times
 const quantityComputed = computed(() => {
-  return props.cart_items.reduce((acc, item) => {
+  return props.cartItems.reduce((acc, item) => {
     if(item.name in acc) {
       acc[item.name] += 1
       return acc
@@ -49,10 +49,10 @@ const quantityComputed = computed(() => {
 
 
 <template>
-  <div class="cart-checkout">
+  <div class="cart-section">
     <h2 class="cart-title">Cart Items</h2>
     <template
-      v-if="cart_items.length !== 0"
+      v-if="cartItems.length !== 0"
     >
       <div
         class="item"
@@ -100,7 +100,7 @@ const quantityComputed = computed(() => {
 
 
 <style scoped>
-  .cart-checkout {
+  .cart-section {
     /* center component */
     display: grid;
     place-items: center;
@@ -109,6 +109,7 @@ const quantityComputed = computed(() => {
   }
   .cart-title {
     margin-bottom: 20px;
+    font-size: 2rem;
     color: #242424;
   }
   .item {

@@ -2,15 +2,15 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  product_list: Array,
-  prod_id: Number,
+  productList: Array,
+  productId: Number,
 })
 
 defineEmits(['addToCart'])
 
 //should be computed, relies on reactive/ref data
 const product = computed(() => {
-  return props.product_list[props.prod_id]
+  return props.productList[props.productId]
 })
 </script>
 

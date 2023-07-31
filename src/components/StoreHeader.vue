@@ -1,9 +1,7 @@
 <script setup>
 
-const props = defineProps({
-  cart_items: Array,
-  set_cart_open: Function,
-  to_home: Function,
+defineProps({
+  cartItems: String,
 })
 
 defineEmits(['setCartOpen', 'toHome'])
@@ -14,7 +12,7 @@ defineEmits(['setCartOpen', 'toHome'])
   <header class="header">
     <h1 class="logo" @click="$emit('toHome')">PhoneX</h1>
     <a href="#" class="cart" @click="$emit('setCartOpen')">
-      <div class="circle">{{ cart_items.length }}</div>
+      <div class="circle">{{ cartItems.length }}</div>
       <img src="../assets/cart_icon.png" class="cart-icon">
     </a>
   </header>

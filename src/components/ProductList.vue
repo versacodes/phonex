@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 
 const props = defineProps({
-  product_list: Array,
+  productList: Array,
 })
 
 defineEmits(['getId'])
@@ -13,7 +13,7 @@ defineEmits(['getId'])
 <template>
   <div class="product-list-container">
     <!-- loop over products then render .product-preview based on key values -->
-    <div class="product-preview" v-for="product in product_list" :key="product.id" @click="$emit('getId', product.id)">
+    <div class="product-preview" v-for="product in productList" :key="product.id" @click="$emit('getId', product.id)">
       <img class="product-list-image" :src="product.image" :alt="product.name"/>
       <section>
         <h2 class="product-name">{{product.name}}</h2>

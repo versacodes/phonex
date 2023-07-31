@@ -39,15 +39,26 @@ function getId(id) {
 
 <template>
   <div class="app">
-    <StoreHeader :cart_items="cart_items"
-                 @set-cart-open="setCartOpen()" @to-home="toHome()"/>
+    <StoreHeader
+      :cart-items="cart_items"
+      @set-cart-open="setCartOpen()"
+      @to-home="toHome()"
+    />
     <main class="main" v-if="!cart_open">
-      <ProductCard :product_list="products"
-                   :prod_id="product_id"
-                   @add-to-cart="(prod) => addToCart(prod)"/>
-      <ProductList :product_list="products" @get-id="(id) => getId(id)"/>
+      <ProductCard
+        :product-list="products"
+        :product-id="product_id"
+        @add-to-cart="(prod) => addToCart(prod)"
+      />
+      <ProductList
+        :product-list="products"
+        @get-id="(id) => getId(id)"
+      />
     </main>
-    <CartSection :cart_items="cart_items" v-else/>
+    <CartSection
+      :cart-items="cart_items"
+      v-else
+    />
   </div>
 </template>
 
