@@ -3,6 +3,7 @@ import StoreHeader from './components/StoreHeader.vue'
 import ProductList from './components/ProductList.vue'
 import ProductCard from './components/ProductCard.vue'
 import CartSection from './components/CartSection.vue'
+import CartCheckout from './components/CartCheckout.vue'
 import { ref } from 'vue'
 
 const products = ref([
@@ -22,11 +23,13 @@ function addToCart(product) {
 const cart_open = ref(false)
 function setCartOpen() {
   cart_open.value = !cart_open.value // sets to true, not false
+  in_checkout.value = false
 }
 
 // go back to homepage
 function toHome() {
   cart_open.value = false
+  in_checkout.value = false
 }
 
 const product_id = ref(0)
@@ -34,6 +37,16 @@ const product_id = ref(0)
 function getId(id) {
   product_id.value = id
 }
+
+const in_checkout = ref(false)
+function setInCheckout() {
+  in_checkout.value = !in_checkout.value // first click becomes true
+  cart_open.value = false
+}
+
+// ProductSection - cart=false, checkout=false
+// CartSection - cart=true, checkout=false
+// CartCheckout - cart=false, checkout=true
 
 </script>
 
@@ -44,7 +57,7 @@ function getId(id) {
       @set-cart-open="setCartOpen()"
       @to-home="toHome()"
     />
-    <main class="main" v-if="!cart_open">
+    <main class="main" v-if="!cart_open && !in_checkout">
       <ProductCard
         :product-list="products"
         :product-id="product_id"
@@ -57,7 +70,11 @@ function getId(id) {
     </main>
     <CartSection
       :cart-items="cart_items"
-      v-else
+      v-else-if="cart_open && !in_checkout"
+      @set-in-checkout="setInCheckout()"
+    />
+    <CartCheckout 
+      v-else-if="!cart_open && in_checkout"
     />
   </div>
 </template>

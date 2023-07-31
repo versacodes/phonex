@@ -1,7 +1,7 @@
 <script setup>
 
 defineProps({
-  cartItems: String,
+  cartItems: Array,
 })
 
 defineEmits(['setCartOpen', 'toHome'])

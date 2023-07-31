@@ -2,8 +2,10 @@
 import { ref, computed } from 'vue'
 
 const props = defineProps({
-  cartItems: Array
+  cartItems: Array,
 })
+
+defineEmits(['setInCheckout'])
 
 function deleteItem(id) {
   // remove only the given specific item 
@@ -94,7 +96,10 @@ const quantityComputed = computed(() => {
         <h6 class="total-price">{{ "$"+(total_price + shipping_fee).toFixed(2) }}</h6>
       </div>
     </div>
-    <button class="checkout-btn">CHECKOUT</button>
+    <button
+      class="checkout-btn"
+      @click="$emit('setInCheckout')"
+    >CHECKOUT</button>
   </section>
 </template>
 
