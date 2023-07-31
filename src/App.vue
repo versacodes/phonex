@@ -2,7 +2,7 @@
 import StoreHeader from './components/StoreHeader.vue'
 import ProductList from './components/ProductList.vue'
 import ProductCard from './components/ProductCard.vue'
-import CartCheckout from './components/CartCheckout.vue'
+import CartSection from './components/CartSection.vue'
 import { ref } from 'vue'
 
 const products = ref([
@@ -47,7 +47,7 @@ function getId(id) {
                    @add-to-cart="(prod) => addToCart(prod)"/>
       <ProductList :product_list="products" @get-id="(id) => getId(id)"/>
     </main>
-    <CartCheckout :cart_items="cart_items" v-else/>
+    <CartSection :cart_items="cart_items" v-else/>
   </div>
 </template>
 
