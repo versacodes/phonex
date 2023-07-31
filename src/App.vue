@@ -24,11 +24,13 @@ function setCartOpen() {
   cart_open.value = !cart_open.value // sets to true, not false
 }
 
+// go back to homepage
 function toHome() {
   cart_open.value = false
 }
 
 const product_id = ref(0)
+// gets the product id
 function getId(id) {
   product_id.value = id
 }
@@ -38,12 +40,12 @@ function getId(id) {
 <template>
   <div class="app">
     <StoreHeader :cart_items="cart_items"
-                 :set_cart_open="setCartOpen" :to_home="toHome"/>
+                 @set-cart-open="setCartOpen()" @to-home="toHome()"/>
     <main class="main" v-if="!cart_open">
       <ProductCard :product_list="products"
                    :prod_id="product_id"
-                   :add_to_cart="addToCart"/>
-      <ProductList :product_list="products" :get_id="getId"/>
+                   @add-to-cart="(prod) => addToCart(prod)"/>
+      <ProductList :product_list="products" @get-id="(id) => getId(id)"/>
     </main>
     <CartCheckout :cart_items="cart_items" v-else/>
   </div>

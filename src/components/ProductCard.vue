@@ -4,8 +4,9 @@ import { computed } from 'vue'
 const props = defineProps({
   product_list: Array,
   prod_id: Number,
-  add_to_cart: Function
 })
+
+defineEmits(['addToCart'])
 
 //should be computed, relies on reactive/ref data
 const product = computed(() => {
@@ -20,7 +21,7 @@ const product = computed(() => {
       <h1 class="product-name">{{product.name}}</h1>
       <h4 class="product-price">{{"$" + product.price}}</h4>
       <p class="product-desc">{{product.desc}}</p>
-      <button class="atc-big" @click="add_to_cart(product)">Add To Cart</button>
+      <button class="atc-big" @click="$emit('addToCart', product)">Add To Cart</button>
     </div>
     <!-- transfer button inside .prod instead of .product_details -->
   </div>
