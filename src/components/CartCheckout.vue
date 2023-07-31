@@ -51,16 +51,36 @@ const quantityComputed = computed(() => {
 <template>
   <div class="cart-checkout">
     <h2 class="cart-title">Cart Items</h2>
-    <div class="item" v-for="(item, idx) in filtered_items" v-if="cart_items.length > 0" :key="item.id">
-      <img class="item-image" :src="item.image" />
-      <h6 class="item-name">
-        {{ item.name }}
-        <span class="item-quantity">{{ "x" + quantityComputed[item.name] }}</span>
-      </h6>
-      <p class="item-price">{{ "$" + item.price }}</p>
-      <button class="delete" @click="deleteItem(idx)">X</button>
-    </div>
+    <template
+      v-if="cart_items.length !== 0"
+    >
+      <div
+        class="item"
+        v-for="(item, idx) in filtered_items"
+        :key="item.id"
+      >
+        <img
+          class="item-image"
+          :src="item.image"
+        />
+        <h6 class="item-name">
+          {{ item.name }}
+          <span class="item-quantity">{{ "x" + quantityComputed[item.name] }}</span>
+        </h6>
+        <p class="item-price">{{ "$" + item.price }}</p>
+        <button
+          class="delete"
+          @click="deleteItem(idx)"
+        >X</button>
+      </div>
+    </template>
+  <!-- show message if cart is empty -->
+  <p
+    class="empty-cart-message"
+    v-else
+  >Your cart is empty.</p>
   </div>
+  
   <section class="fixed">
     <div class="total">
       <div class="total-names">
@@ -84,9 +104,8 @@ const quantityComputed = computed(() => {
     /* center component */
     display: grid;
     place-items: center;
-    background: #fdf;
     padding: 20px 0;
-    margin-bottom: 7em;
+    margin-bottom: 8rem;
   }
   .cart-title {
     margin-bottom: 20px;
@@ -95,9 +114,11 @@ const quantityComputed = computed(() => {
   .item {
     display: flex;
     align-items: center;
-    background: #fafada;
+    /* background: #fafada; */
+    border: 1px solid #222;
     width: 70%;
     padding: 0.5em;
+    margin-bottom: 1px;
   }
   .item-image {
     width: 15%;
@@ -142,10 +163,10 @@ const quantityComputed = computed(() => {
     width: 100%;
   }
   .total {
-    background: #eedfed;
-    padding: 1em 2em;
     display: flex;
     justify-content: space-between;
+    background: #eedfed;
+    padding: 1em 2em;
   }
   .total-names, .total-prices {
     font-size: 0.9em;
@@ -158,11 +179,18 @@ const quantityComputed = computed(() => {
   }
   .checkout-btn {
     background: #e33;
+    color: #fff;
     width: 100%;
     padding: 1em;
-    color: #fff;
     font-size: 0.8em;
     font-weight: bold;
+  }
+  .empty-cart-message {
+    /* background: #8cc; */
+    /* display: flex; */
+    margin-top: 5.5rem;
+    font-size: 1rem;
+    color: #555;
   }
 </style>
 
