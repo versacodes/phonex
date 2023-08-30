@@ -4,6 +4,7 @@ defineOptions({
 })
 defineProps({
   modelValue: String,
+  validErrorMsg: String,
 })
 defineEmits(['update:modelValue'])
 </script>
@@ -23,6 +24,7 @@ defineEmits(['update:modelValue'])
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)"
   />
+  <span class="error-msg" v-if="validErrorMsg">{{ validErrorMsg }}</span>
 </template>
 
 <style scoped>
@@ -45,5 +47,12 @@ input {
   padding: 0.8rem;
   color: #333;
   outline-color: #97f;
+}
+
+.error-msg {
+  color: #f45;
+  margin-top: 5px;
+  font-size: 0.8rem;
+  display: block;
 }
 </style>

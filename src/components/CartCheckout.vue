@@ -6,21 +6,30 @@ const card_number = ref('')
 const card_expiration = ref('')
 const cvv = ref('')
 
+// validate card_number, card_expiration and cvv
 const cardNumberValid = computed(() => {
   return card_number.value.length === 16 ? true : false
 })
 
+// cases are length is 5 and the 2nd index is a '/' character
 const cardExpirationValid = computed(() => {
-  return card_expiration.value.length && card_expiration.value[2] === '/' ? true : false
+  return card_expiration.value.length === 5 && card_expiration.value[2] === '/' ? true : false
 })
 
+// cvv can be 3 or 4 in length
 const cvvValid = computed(() => {
   return cvv.value.length === 3 || cvv.value.length === 4 ? true : false
 })
 
+// disable button with isDisabled based on validation of card_number, card_expiration and cvv
 const isDisabled = computed(() => {
   return cardNumberValid && cardExpirationValid && cvvValid ? true : false
 })
+
+// only show error msg if the input is valid or the input value is not falsy(or empty)
+const showErrorMsg = (inputValue, isInputValid, errorMsg) => {
+  return isInputValid || !inputValue ? false : errorMsg
+}
 
 </script>
 
@@ -60,6 +69,7 @@ const isDisabled = computed(() => {
         required
         name="card_number"
         v-model="card_number"
+        :valid-error-msg="showErrorMsg(card_number, cardNumberValid, 'Card number should be 16 digits')"
       />
       <BaseInput
         label="Expiration of Card: "
@@ -70,6 +80,7 @@ const isDisabled = computed(() => {
         required
         name="expiration_date"
         v-model="card_expiration"
+        :valid-error-msg="showErrorMsg(card_expiration, cardExpirationValid, `Expiration Date should be in this format '09/25'`)"
       />
       <BaseInput
         label="CVV: "
@@ -80,6 +91,7 @@ const isDisabled = computed(() => {
         required
         name="cvv"
         v-model="cvv"
+        :valid-error-msg="showErrorMsg(cvv, cvvValid, 'CVV should be 3 or 4 digits')"
       />
     </form>
     <button
@@ -87,10 +99,6 @@ const isDisabled = computed(() => {
       form="checkout-form"
       :disabled="!isDisabled"
     >Submit</button>
-    <p>{{ cardNumberValid }}</p>
-    <p>{{ cardExpirationValid }}</p>
-    <p>{{ cvvValid }}</p>
-    <p>{{ isDisabled }}</p>
   </section>
 </template>
 
