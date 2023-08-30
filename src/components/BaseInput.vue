@@ -13,16 +13,21 @@ export default {
   <label
     :for="$attrs.id"
     class="input_label"
-  >Input</label>
+  >{{$attrs.label}}</label>
   <input
     :id="$attrs.id"
     :placeholder="$attrs.placeholder"
     :type="$attrs.type"
+    :class="$attrs.class"
   />
 </template>
 
 <style scoped>
 .input_label {
   padding-bottom: 10px;
+  margin-top: 10px;
 }
+.expiration, .cvv {
+  width: 6rem;
+} 
 </style>
