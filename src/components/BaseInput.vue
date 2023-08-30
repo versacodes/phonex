@@ -1,12 +1,7 @@
-<script>
-// to use set automatic attribute inheritance in components
-// Vue 3.3 can use defineOptions({})
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <script setup>
+defineOptions({
+  inheritAttrs: false,
+})
 </script>
 
 <template>
@@ -19,6 +14,8 @@ export default {
     :placeholder="$attrs.placeholder"
     :type="$attrs.type"
     :class="$attrs.class"
+    :name="$attrs.name"
+    required="required"
   />
 </template>
 
@@ -26,8 +23,21 @@ export default {
 .input_label {
   padding-bottom: 10px;
   margin-top: 10px;
+  font-size: 1.1rem;
+  color: #333;
 }
+
+.input_label ~ .input_label {
+  margin-top: 1.4rem;
+}
+
 .expiration, .cvv {
   width: 6rem;
-} 
+}
+
+input {
+  padding: 0.8rem;
+  color: #333;
+  outline-color: #97f;
+}
 </style>
