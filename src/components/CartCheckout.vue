@@ -1,5 +1,27 @@
 <script setup>
 import BaseInput from './BaseInput.vue'
+import { ref, computed } from 'vue'
+
+const card_number = ref('')
+const card_expiration = ref('')
+const cvv = ref('')
+
+const cardNumberValid = computed(() => {
+  return card_number.value.length === 16 ? true : false
+})
+
+const cardExpirationValid = computed(() => {
+  return card_expiration.value.length && card_expiration.value[2] === '/' ? true : false
+})
+
+const cvvValid = computed(() => {
+  return cvv.value.length === 3 || cvv.value.length === 4 ? true : false
+})
+
+const isDisabled = computed(() => {
+  return cardNumberValid && cardExpirationValid && cvvValid ? true : false
+})
+
 </script>
 
 <template>
@@ -18,6 +40,7 @@ import BaseInput from './BaseInput.vue'
         type="email"
         :class="$style.input"
         required
+        name="email"
       />
       <BaseInput
         label="Full Name: "
@@ -26,6 +49,7 @@ import BaseInput from './BaseInput.vue'
         type="text"
         :class="$style.input"
         required
+        name="full_name"
       />
       <BaseInput
         label="Card Number: "
@@ -34,6 +58,8 @@ import BaseInput from './BaseInput.vue'
         type="text"
         :class="$style.input"
         required
+        name="card_number"
+        v-model="card_number"
       />
       <BaseInput
         label="Expiration of Card: "
@@ -42,6 +68,8 @@ import BaseInput from './BaseInput.vue'
         type="text"
         :class="$style.expiration"
         required
+        name="expiration_date"
+        v-model="card_expiration"
       />
       <BaseInput
         label="CVV: "
@@ -50,12 +78,19 @@ import BaseInput from './BaseInput.vue'
         type="text"
         :class="$style.cvv"
         required
+        name="cvv"
+        v-model="cvv"
       />
     </form>
     <button
       :class="$style.button"
       form="checkout-form"
+      :disabled="!isDisabled"
     >Submit</button>
+    <p>{{ cardNumberValid }}</p>
+    <p>{{ cardExpirationValid }}</p>
+    <p>{{ cvvValid }}</p>
+    <p>{{ isDisabled }}</p>
   </section>
 </template>
 

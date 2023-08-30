@@ -2,6 +2,10 @@
 defineOptions({
   inheritAttrs: false,
 })
+defineProps({
+  modelValue: String,
+})
+defineEmits(['update:modelValue'])
 </script>
 
 <template>
@@ -16,6 +20,8 @@ defineOptions({
     :class="$attrs.class"
     :name="$attrs.name"
     required="required"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
   />
 </template>
 
